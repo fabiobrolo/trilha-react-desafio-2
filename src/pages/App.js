@@ -17,6 +17,10 @@ function App() {
   const handleSearchRepo = async () => {
 
     const {data} = await api.get(`repos/${currentRepo}`)
+    .catch(function (error) {
+      console.log(error.toJSON());
+      alert('Repositório não encontrado')
+    });
 
     if(data.id){
 
@@ -27,16 +31,14 @@ function App() {
         setCurrentRepo('')
         return
       }
-
     }
-    alert('Repositório não encontrado')
-
   }
 
   const handleRemoveRepo = (id) => {
-    console.log('Removendo registro', id);
-
-    // utilizar filter.
+    console.log('Removendo registro ', id);
+    repos.filter(repo => id);
+    setRepos(repos.filter(repo => repo.id !== id));
+    return;
   }
 
 
